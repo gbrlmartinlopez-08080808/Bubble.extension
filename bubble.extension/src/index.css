@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-glass-bg backdrop-blur-xl border border-glass-border shadow-2xl;
+  }
+  .glass-button {
+    @apply bg-glass-surface hover:bg-white/10 transition-colors border border-glass-border;
+  }
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
