@@ -1,65 +1,30 @@
 # Ink of Babylon
 
-A paper-cut espionage battle-royale that runs entirely in the browser — no engine, no build step.
-Flat **paper standees** (drawn procedurally with wobbly ink lines onto `<canvas>`) walk through a real **3D Babylon** rendered with Three.js.
+A paper-cut historical spy thriller that runs entirely in the browser (Three.js, no build step, no assets: all art, music and voices are generated at runtime).
 
-> Babylon, A.D. 1187. A Crusader garrison has made camp among the glazed bricks of the Ishtar Gate.
-> Under the ziggurat of the Esagila, three clay tablets still sleep. Seven operatives crossed the river for them. Only one will leave.
+You are **Tabni**, Chief of the King's Eyes of Elam, wearing the face and ring of a dead Babylonian general. Everything is Mesopotamian: Ishtar Gate, Processional Way, the Esagila temple and its ziggurat, glazed bricks, lamassu, cuneiform tablets. No medieval anything.
 
-## Run it
+## Run
 
-Open `index.html` in a desktop browser (double-click works), or serve the folder:
+Open `index.html` in a desktop browser, or `python3 -m http.server` in this folder. Click the game once so it can capture the mouse.
 
-```bash
-cd games/ink-of-babylon && python3 -m http.server 8000   # then open http://localhost:8000
-```
+## Story (six chapters, selectable from the title screen or Esc/Tab menu)
 
-Three.js r128 is vendored in `lib/`, so it works offline. (Google Fonts are optional; it falls back to system serif/handwriting.)
-
-## The mission (≈10 minutes)
-
-1. **Reach the Esagila** along the Processional Way — through the Ishtar Gate (heavily guarded) or around the wall ends.
-   Visit the **House of Beer** and ask Ur-Nanshe: she'll tell you about a hidden **water-carriers' door** into the temple cistern.
-2. **Steal three tablets** inside the temple: *Enūma Eliš* (west archive), *Gilgamesh XI* (east archive). Taking both opens the sealed sanctum for *MUL.APIN*.
-3. Lifting the last tablet **raises the alarm** — reinforcements and a **mounted captain** pour in. **Escape home alive.**
-4. Meanwhile a **sandstorm** closes in on the city and the other operatives are being eliminated, battle-royale style.
-
-Enterable places: your safehouse (bank gold, resupply, rest), the Scribe's House (shop, floor-plan), the tavern (drink, rumours), and the temple.
-
-## Controls
-
-| Key | Action |
-| --- | --- |
-| `W A S D` | move (relative to camera) |
-| Mouse / arrow keys | look · aim |
-| `Shift` | sprint (noisy) |
-| `C` (hold) | sneak — halves how far guards see you |
-| `LMB` | crossbow (quiet, aim-assisted) · `RMB` / `V` steady aim |
-| `F` | dagger — **from behind an unaware guard = silent takedown** |
-| `Q` | ink bomb — blinds guards in the cloud and draws them to the noise |
-| `Space` | dodge roll (invulnerable) — dodge arrows and the captain's charge |
-| `E` | enter · talk · steal · open |
-| `Esc` / `Tab` | pause · `M` mute |
+1. **The Road to Babylon**: first-person ride in a cart. Briefing, learning the dead general's life (you will be tested on it), the poison ring, a checkpoint.
+2. **The Ishtar Gate**: gate inspection, an honor guard, an escort captain who may suspect you.
+3. **The Market of Marduk**: thousands of paper people, a contact who needs the right password, overheard rumors, the sacred precinct.
+4. **The House Whose Head Is Lofty**: Esagila in four levels (Great Hall, Scriptorium, Marshal's wing, haunted cistern). Restricted zones, an Inspector's three-question interrogation, a secretary, guards who challenge you.
+5. **The Marshal's Table**: first-person banquet. Conversation tests, poison a cup in a narrow window, survive the Marshal's grip (mash E), kill him.
+6. **Forty Cubits Above the Street**: take the ledger, crawl the ledge, run the rooftops, leap into the river, boat epilogue.
 
 ## Systems
 
-- **Stats** (from the design sketch): HP, Sanity, skills *Combat / Luck / Observation*, Gold, XP.
-  - **Sanity** drains in the storm and deep in the sanctum; low sanity brings whispers and a purple vignette; at 0 you bleed.
-  - **Observation** widens your minimap, loot sense and shows guard vision cones. **Luck** improves loot, crits and stealth. **Combat** raises damage and reload.
-  - **Gold** is only yours once it reaches *home* (carried gold is lost on death). **XP is permanent** (saved in `localStorage`); every Rank grants permanent starting skill.
-  - Collectable **cards** (eye / clover / sun / sword) found in chests, the world and on fallen rivals give skill levels.
-- **Stealth AI**: vision cones with line-of-sight, alert meter (`?` → `!`), noise from sprinting/shots/bombs, search & return states, shouting for help.
-- **Rival operatives** (fox, rabbit, bird, dog) hunt you with crossbows; others are eliminated by the garrison and the storm as the counter ticks down.
-- **Cinematics**: scripted camera flythroughs with typed captions, letterbox bars, ink-wipe transitions between places, camera shake. Press `Space` to skip.
-- **Procedural audio**: wind, a Phrygian-dominant drone and plucks, frame-drum tension when you're hunted — all synthesized with WebAudio.
+- Paper dolls: real 3D extruded card cut-outs with ink-outline hulls, big mitten hands, jointed animation. Killing one tears it into flat pieces that flutter down; silent kills fold them gently.
+- First-person (V to toggle, automatic indoors) with free vertical look, paper hands holding the bow, knife, sling, pots, cup, vial, tablets.
+- Social stealth: a drawn weapon, running, sneaking or loitering in restricted zones raises suspicion. Guards challenge you and you can bluff, show the seal, bribe or fight. Bodies are found; hide them (E).
+- Smarter guards: pair chats you can overhear, salutes, noise and body investigation, group search patterns, hiding spots, shield-bearers block arrows from the front, flanking, token-limited melee, fleeing and calling reinforcements, a charging captain.
+- Cinematics with first-person moments, caption cards, quick-time events, pseudo-Akkadian dialogue with subtitles and voiced babble.
 
-## Layout
+## Controls
 
-```
-index.html        page, HUD and paper-style CSS
-js/art.js         all artwork: ink primitives, paper cut-outs, props, textures
-js/engine.js      input, audio, collision, level builders, particles, camera, cinematics, UI
-js/world.js       the open city, the interiors, the Esagila temple
-js/actors.js      player, guards, rivals, projectiles, pickups, save data
-js/main.js        flow, mission logic, sandstorm, camera, HUD, minimap, main loop
-```
+WASD move · mouse look · V view · Shift run · C sneak · 1-4 bow/knife/sling/pot · X empty hands · LMB use (hold to draw the bow) · RMB steady aim · F stab · Space roll · E interact · Tab journal · Esc pause and chapter select · M mute.
